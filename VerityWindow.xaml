@@ -1,0 +1,85 @@
+﻿<Window x:Class="DesktopVerity.VerityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopVerity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Debug window" Click="OpenDebugWindow" />
+                <MenuItem Header="Close" Click="CloseMenuItemOnClick" />
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+        <Viewport3D x:Name="Viewport" Grid.Row="0">
+            
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="Camera" 
+                                   Position="0,-6.449,-0.1"
+                                   LookDirection="-0,6.449,0.1"
+                                   UpDirection="0,1,0"
+                                   FieldOfView="60"/>
+            </Viewport3D.Camera>
+
+            <Viewport3D.Children>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            
+                            <DirectionalLight Color="White" Direction="{Binding LightPosition}" />
+                            <AmbientLight Color="#333333" />
+
+                            <GeometryModel3D x:Name="VerityModel">
+
+                                <!-- Material: Surface Color / Appearance -->
+                                <GeometryModel3D.Material>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <!-- <SolidColorBrush Color="DeepSkyBlue"/> -->
+                                            <ImageBrush ImageSource="/Resources/verity6.png"
+                                                Stretch="UniformToFill"
+                                                Opacity="1.0" />
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </GeometryModel3D.Material>
+
+                                <GeometryModel3D.Transform>
+                                    <Transform3DGroup>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="VerityRotationX" x:FieldModifier="public" Axis="1,0,0" Angle="0" />
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="VerityRotationY" x:FieldModifier="public" Axis="0,1,0" Angle="0" />
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="VerityRotationZ" x:FieldModifier="public" Axis="0,0,1" Angle="0" />
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                    </Transform3DGroup>
+                                </GeometryModel3D.Transform>
+                                
+                            </GeometryModel3D>
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+        </Viewport3D>
+    </Grid>
+</Window>
