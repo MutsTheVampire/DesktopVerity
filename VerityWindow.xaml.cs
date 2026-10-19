@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -11,6 +12,7 @@ namespace DesktopVerity;
 public partial class VerityWindow
 {
     private Verity3DDebugWindow? _debugWindow;
+    private VerityEmotion _emotion = VerityEmotion.Happy;
 
     public Vector3D LightPosition
     {
@@ -80,7 +82,7 @@ public partial class VerityWindow
         ownerType: typeof(VerityWindow),
         typeMetadata: new FrameworkPropertyMetadata(
             defaultValue: 0.0,
-            propertyChangedCallback: OnCameraAngleChangedCallback));
+            propertyChangedCallback: OnCameraPositionChangedCallback));
 
     public static readonly DependencyProperty CameraPositionYProperty = DependencyProperty.Register(
         name: nameof(CameraPositionY),
@@ -88,7 +90,7 @@ public partial class VerityWindow
         ownerType: typeof(VerityWindow),
         typeMetadata: new FrameworkPropertyMetadata(
             defaultValue: 0.0,
-            propertyChangedCallback: OnCameraAngleChangedCallback));
+            propertyChangedCallback: OnCameraPositionChangedCallback));
 
     public static readonly DependencyProperty CameraPositionZProperty = DependencyProperty.Register(
         name: nameof(CameraPositionZ),
@@ -96,7 +98,20 @@ public partial class VerityWindow
         ownerType: typeof(VerityWindow),
         typeMetadata: new FrameworkPropertyMetadata(
             defaultValue: 0.0,
-            propertyChangedCallback: OnCameraAngleChangedCallback));
+            propertyChangedCallback: OnCameraPositionChangedCallback));
+
+    public static readonly DependencyProperty VerityFaceImageProperty = DependencyProperty.Register(
+        name: nameof(VerityFaceImage),
+        propertyType: typeof(string),
+        ownerType: typeof(VerityWindow),
+        typeMetadata: new FrameworkPropertyMetadata(
+            defaultValue: "/Resources/happy.png"));
+
+    public string VerityFaceImage
+    {
+        get => (string)GetValue(VerityFaceImageProperty);
+        set => SetValue(VerityFaceImageProperty, value);
+    }
 
     public VerityWindow()
     {
@@ -106,12 +121,30 @@ public partial class VerityWindow
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         }
 
+        SetEmotion(VerityEmotion.Happy);
         InitializeComponent();
 
         VerityModel.Geometry = SphereGenerator.CreateSphere(30, 30);
     }
 
-    private static void OnCameraAngleChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    public void SetEmotion(VerityEmotion emotion)
+    {
+        _emotion = emotion;
+
+        string fileName = emotion switch
+        {
+            VerityEmotion.Happy   => "/Resources/happy.png",
+            VerityEmotion.Serious => "/Resources/serious_1.png",
+            VerityEmotion.Crazy   => "/Resources/crazy.png",
+            VerityEmotion.Evil    => "/Resources/evil.png",
+            VerityEmotion.Neutral => "/Resources/neutral.png",
+            VerityEmotion.Hurt    => "/Resources/hurt.png",
+        };
+
+        VerityFaceImage = fileName;
+    }
+
+    private static void OnCameraPositionChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not VerityWindow verityWindow) return;
 
@@ -133,5 +166,13 @@ public partial class VerityWindow
     private void CloseMenuItemOnClick(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void VerityWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e is { ButtonState: MouseButtonState.Pressed, ChangedButton: MouseButton.Left })
+        {
+            DragMove();
+        }
     }
 }

@@ -10,7 +10,9 @@
         AllowsTransparency="True"
         Background="Transparent"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        d:DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        d:DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        MouseLeftButtonDown="VerityWindow_OnMouseLeftButtonDown"
+        ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,8 +29,8 @@
             
             <Viewport3D.Camera>
                 <PerspectiveCamera x:Name="Camera" 
-                                   Position="0,-6.449,-0.1"
-                                   LookDirection="-0,6.449,0.1"
+                                   Position="0,-6.0,-0.01"
+                                   LookDirection="-0,6.0,0.01"
                                    UpDirection="0,1,0"
                                    FieldOfView="60"/>
             </Viewport3D.Camera>
@@ -48,7 +50,7 @@
                                     <DiffuseMaterial>
                                         <DiffuseMaterial.Brush>
                                             <!-- <SolidColorBrush Color="DeepSkyBlue"/> -->
-                                            <ImageBrush ImageSource="/Resources/verity6.png"
+                                            <ImageBrush ImageSource="{Binding VerityFaceImage}"
                                                 Stretch="UniformToFill"
                                                 Opacity="1.0" />
                                         </DiffuseMaterial.Brush>

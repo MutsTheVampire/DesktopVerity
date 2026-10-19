@@ -9,15 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\verity6.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Management" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\verity6.png" />
+    <Resource Include="Resources\*.png" />
   </ItemGroup>
 
 </Project>
