@@ -14,7 +14,7 @@ public partial class App : Application
     internal Friend Friend { get; private set; }
     internal Verity Verity { get; private set; }
 
-    [Experimental("WPF0001")]
+    [Experimental("WPF0001")] // Required for ThemeMode
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
@@ -38,7 +38,6 @@ public partial class App : Application
         }
 
         Friend = new(Config.FriendName);
-
         Verity = new();
 
         VerityWindow verityWindow = new(Verity);

@@ -19,43 +19,43 @@
                     <StackPanel Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Rotate Verity (X) " HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="{ Binding ElementName=VerityRotationX, Path=Angle }" HorizontalAlignment="Center" />
+                            <TextBlock Text="{ Binding VerityRotationX }" HorizontalAlignment="Center" />
                         </StackPanel>
-                        <Slider Minimum="0" Maximum="360" Value="{Binding ElementName=VerityRotationX, Path=Angle, Mode=TwoWay}" Margin="0,5,0,0"/>
+                        <Slider Minimum="0" Maximum="360" Value="{Binding VerityRotationX, Mode=TwoWay}" Margin="0,5,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Rotate Verity (Y) " HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="{ Binding ElementName=VerityRotationY, Path=Angle }" HorizontalAlignment="Center" />
+                            <TextBlock Text="{ Binding VerityRotationY }" HorizontalAlignment="Center" />
                         </StackPanel>
-                        <Slider Minimum="0" Maximum="360" Value="{Binding ElementName=VerityRotationY, Path=Angle, Mode=TwoWay}" Margin="0,5,0,0"/>
+                        <Slider Minimum="0" Maximum="360" Value="{Binding VerityRotationY, Mode=TwoWay}" Margin="0,5,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Rotate Verity (Z) " HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="{ Binding ElementName=VerityRotationZ, Path=Angle }" HorizontalAlignment="Center" />
+                            <TextBlock Text="{ Binding VerityRotationZ }" HorizontalAlignment="Center" />
                         </StackPanel>
-                        <Slider Minimum="0" Maximum="360" Value="{Binding ElementName=VerityRotationZ, Path=Angle, Mode=TwoWay}" Margin="0,5,0,0"/>
+                        <Slider Minimum="0" Maximum="360" Value="{Binding VerityRotationZ, Mode=TwoWay}" Margin="0,5,0,0"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="1">
                 <StackPanel Orientation="Vertical" Margin="10">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Orbit camera (X) " HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Camera position (X) " HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock Text="{ Binding CameraPositionX }" HorizontalAlignment="Center" />
                     </StackPanel>
                     <Slider Minimum="-1" Maximum="1.0" Value="{Binding CameraPositionX, Mode=TwoWay}" Margin="0,5,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Orbit camera (Y) " HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Camera position (Y) " HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock Text="{ Binding CameraPositionY }" HorizontalAlignment="Center" />
                     </StackPanel>
                     <Slider Minimum="-7" Maximum="-5" Value="{Binding CameraPositionY, Mode=TwoWay}" Margin="0,5,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Orbit camera (Z) " HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="Camera position (Z) " HorizontalAlignment="Center" FontWeight="Bold"/>
                         <TextBlock Text="{ Binding CameraPositionZ }" HorizontalAlignment="Center" />
                     </StackPanel>
                     <Slider Minimum="-0.1" Maximum="1.0" Value="{Binding CameraPositionZ, Mode=TwoWay}" Margin="0,5,0,0"/>

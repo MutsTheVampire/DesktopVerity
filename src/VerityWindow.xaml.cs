@@ -101,6 +101,43 @@ public partial class VerityWindow
             defaultValue: 0.0,
             propertyChangedCallback: OnCameraPositionChangedCallback));
 
+    public double VerityRotationX
+    {
+        get => (double)GetValue(VerityRotationXProperty);
+        set => SetValue(VerityRotationXProperty, value);
+    }
+    public double VerityRotationY
+    {
+        get => (double)GetValue(VerityRotationYProperty);
+        set => SetValue(VerityRotationYProperty, value);
+    }
+    public double VerityRotationZ
+    {
+        get => (double)GetValue(VerityRotationZProperty);
+        set => SetValue(VerityRotationZProperty, value);
+    }
+
+    public static readonly DependencyProperty VerityRotationXProperty = DependencyProperty.Register(
+        name: nameof(VerityRotationX),
+        propertyType: typeof(double),
+        ownerType: typeof(VerityWindow),
+        typeMetadata: new FrameworkPropertyMetadata(
+            defaultValue: 0.0));
+
+    public static readonly DependencyProperty VerityRotationYProperty = DependencyProperty.Register(
+        name: nameof(VerityRotationY),
+        propertyType: typeof(double),
+        ownerType: typeof(VerityWindow),
+        typeMetadata: new FrameworkPropertyMetadata(
+            defaultValue: 0.0));
+
+    public static readonly DependencyProperty VerityRotationZProperty = DependencyProperty.Register(
+        name: nameof(VerityRotationZ),
+        propertyType: typeof(double),
+        ownerType: typeof(VerityWindow),
+        typeMetadata: new FrameworkPropertyMetadata(
+            defaultValue: 0.0));
+
     public static readonly DependencyProperty VerityFaceImageProperty = DependencyProperty.Register(
         name: nameof(VerityFaceImage),
         propertyType: typeof(string),

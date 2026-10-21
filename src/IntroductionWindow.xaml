@@ -8,7 +8,8 @@
         Title="Introduction" Height="Auto" Width="300"
         SizeToContent="Height"
         ResizeMode="CanMinimize"
-        SnapsToDevicePixels="True">
+        SnapsToDevicePixels="True"
+        d:Background="DarkGoldenrod">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +18,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="12,12,12,0">
             <Image Width="32" Height="32" x:Name="PartMessageIcon" Margin="0,0,6,0" />
-            <TextBlock>Introduce yourself to Verity.</TextBlock>
+            <TextBlock VerticalAlignment="Center">Introduce yourself to Verity.</TextBlock>
         </StackPanel>
         <Grid Grid.Row="1" Margin="12,6,12,12">
             <Grid.ColumnDefinitions>
@@ -25,12 +26,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="0,0,6,0" VerticalAlignment="Center">Your _name:</Label>
-            <TextBox Grid.Column="1" x:Name="PartFriendName" VerticalAlignment="Center"></TextBox>
+            <TextBox Grid.Column="1" x:Name="PartFriendName" TextChanged="PartFriendName_OnTextChanged" VerticalAlignment="Center"></TextBox>
         </Grid>
-        <Grid Grid.Row="2" Background="#10FFFFFF" VerticalAlignment="Bottom">
+        <Grid Grid.Row="2" Background="#20000000" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Right">
                 <Button Click="QuitButton_OnClick" Width="60" Margin="0,0,6,0">_Quit</Button>
-                <Button Click="OkButton_OnClick" Width="60">_OK</Button>
+                <Button Click="OkButton_OnClick" x:Name="OkButton" Width="60">_OK</Button>
             </StackPanel>
         </Grid>
     </Grid>

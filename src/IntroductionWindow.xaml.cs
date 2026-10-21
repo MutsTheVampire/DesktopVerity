@@ -1,17 +1,19 @@
 using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
 
 namespace DesktopVerity;
 
-public partial class IntroductionWindow : Window
+public partial class IntroductionWindow
 {
     public IntroductionWindow()
     {
         InitializeComponent();
         Closed += OnClosed;
 
-        PartMessageIcon.Source = Imaging.CreateBitmapSourceFromHIcon(SystemIcons.Question.Handle, Int32Rect.Empty, null);
+        PartMessageIcon.Source = Imaging.CreateBitmapSourceFromHIcon(
+            SystemIcons.GetStockIcon(StockIconId.Help).Handle, Int32Rect.Empty, null);
 
         string?[] names = [
             System.DirectoryServices.AccountManagement.UserPrincipal.Current.GivenName?.Trim(),
@@ -37,5 +39,10 @@ public partial class IntroductionWindow : Window
     private void QuitButton_OnClick(object sender, RoutedEventArgs e)
     {
         Application.Current.Shutdown();
+    }
+
+    private void PartFriendName_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        OkButton.IsEnabled = !string.IsNullOrEmpty(PartFriendName.Text);
     }
 }

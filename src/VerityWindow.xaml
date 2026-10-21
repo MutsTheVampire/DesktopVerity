@@ -61,17 +61,17 @@
                                     <Transform3DGroup>
                                         <RotateTransform3D>
                                             <RotateTransform3D.Rotation>
-                                                <AxisAngleRotation3D x:Name="VerityRotationX" x:FieldModifier="public" Axis="1,0,0" Angle="0" />
+                                                <AxisAngleRotation3D Axis="1,0,0" Angle="{Binding VerityRotationX}" />
                                             </RotateTransform3D.Rotation>
                                         </RotateTransform3D>
                                         <RotateTransform3D>
                                             <RotateTransform3D.Rotation>
-                                                <AxisAngleRotation3D x:Name="VerityRotationY" x:FieldModifier="public" Axis="0,1,0" Angle="0" />
+                                                <AxisAngleRotation3D Axis="0,1,0" Angle="{Binding VerityRotationY}" />
                                             </RotateTransform3D.Rotation>
                                         </RotateTransform3D>
                                         <RotateTransform3D>
                                             <RotateTransform3D.Rotation>
-                                                <AxisAngleRotation3D x:Name="VerityRotationZ" x:FieldModifier="public" Axis="0,0,1" Angle="0" />
+                                                <AxisAngleRotation3D Axis="0,0,1" Angle="{Binding VerityRotationZ}" />
                                             </RotateTransform3D.Rotation>
                                         </RotateTransform3D>
                                     </Transform3DGroup>
