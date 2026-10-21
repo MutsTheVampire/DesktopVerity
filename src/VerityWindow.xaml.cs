@@ -12,8 +12,9 @@ namespace DesktopVerity;
 public partial class VerityWindow
 {
     private Verity3DDebugWindow? _debugWindow;
-    private VerityEmotion _emotion = VerityEmotion.Happy;
+    private readonly Verity _verity;
 
+#region Dependency properties
     public Vector3D LightPosition
     {
         get => (Vector3D)GetValue(LightPositionProperty);
@@ -106,6 +107,7 @@ public partial class VerityWindow
         ownerType: typeof(VerityWindow),
         typeMetadata: new FrameworkPropertyMetadata(
             defaultValue: "/Resources/happy.png"));
+#endregion
 
     public string VerityFaceImage
     {
@@ -113,7 +115,7 @@ public partial class VerityWindow
         set => SetValue(VerityFaceImageProperty, value);
     }
 
-    public VerityWindow()
+    public VerityWindow(Verity verity)
     {
         // XXX: This was crashing under VMware for me without this line of code.
         if (Utility.IsRunningInVirtualMachine())
@@ -121,27 +123,33 @@ public partial class VerityWindow
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         }
 
-        SetEmotion(VerityEmotion.Happy);
+        _verity = verity;
+        _verity.Emotion.EmotionChanged += OnEmotionChanged;
+
         InitializeComponent();
 
         VerityModel.Geometry = SphereGenerator.CreateSphere(30, 30);
     }
 
-    public void SetEmotion(VerityEmotion emotion)
+    /**
+     * Gets the face texture for the 3D Verity model corresponding to the current emotion.
+     */
+    private string GetEmotionFaceTexture()
     {
-        _emotion = emotion;
-
-        string fileName = emotion switch
+        return _verity.Emotion.SimpleEmotion switch
         {
-            VerityEmotion.Happy   => "/Resources/happy.png",
-            VerityEmotion.Serious => "/Resources/serious_1.png",
-            VerityEmotion.Crazy   => "/Resources/crazy.png",
-            VerityEmotion.Evil    => "/Resources/evil.png",
-            VerityEmotion.Neutral => "/Resources/neutral.png",
-            VerityEmotion.Hurt    => "/Resources/hurt.png",
+            SimpleEmotion.Happy   => "/Resources/happy.png",
+            SimpleEmotion.Serious => "/Resources/serious_1.png",
+            SimpleEmotion.Crazy   => "/Resources/crazy.png",
+            SimpleEmotion.Evil    => "/Resources/evil.png",
+            SimpleEmotion.Neutral => "/Resources/neutral.png",
+            SimpleEmotion.Hurt    => "/Resources/hurt.png",
         };
+    }
 
-        VerityFaceImage = fileName;
+    private void OnEmotionChanged(object? sender, EventArgs e)
+    {
+        VerityFaceImage = GetEmotionFaceTexture();
     }
 
     private static void OnCameraPositionChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
