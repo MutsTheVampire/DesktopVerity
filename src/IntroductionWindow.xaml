@@ -9,7 +9,7 @@
         SizeToContent="Height"
         ResizeMode="CanMinimize"
         SnapsToDevicePixels="True"
-        d:Background="DarkGoldenrod">
+        Background="DarkGoldenrod"> <!-- Hardcoded background suggested by Kita -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
