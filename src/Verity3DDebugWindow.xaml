@@ -92,14 +92,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label VerticalAlignment="Center">Verity emotion</Label>
-            <ComboBox SelectedItem="0">
-                <ComboBoxItem Selected="EmotionHappy_Selected">Happy</ComboBoxItem>
-                <ComboBoxItem Selected="EmotionNeutral_Selected">Neutral</ComboBoxItem>
-                <ComboBoxItem Selected="EmotionCrazy_Selected">Crazy</ComboBoxItem>
-                <ComboBoxItem Selected="EmotionSerious_Selected">Serious</ComboBoxItem>
-                <ComboBoxItem Selected="EmotionEvil_Selected">Evil</ComboBoxItem>
-                <ComboBoxItem Selected="EmotionHurt_Selected">Hurt</ComboBoxItem>
-            </ComboBox>
+            <ComboBox x:Name="PART_EmotionComboBox" />
         </StackPanel>
     </Grid>
 </Window>

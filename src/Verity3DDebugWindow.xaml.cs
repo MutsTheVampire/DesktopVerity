@@ -1,3 +1,5 @@
+using System.Windows.Controls;
+
 namespace DesktopVerity;
 
 public partial class Verity3DDebugWindow
@@ -9,35 +11,22 @@ public partial class Verity3DDebugWindow
         _verityWindow = verityWindow;
         DataContext = _verityWindow;
         InitializeComponent();
-    }
 
-    private void EmotionHappy_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Happy;
-    }
+        foreach (string enumName in typeof(SimpleEmotion).GetEnumNames())
+        {
+            ComboBoxItem item = new()
+            {
+                Content = enumName,
+            };
 
-    private void EmotionNeutral_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Neutral;
-    }
+            item.Selected += (sender, args) =>
+            {
+                _verityWindow.Verity.Emotion.SimpleEmotion = Enum.Parse<SimpleEmotion>(enumName);
+            };
 
-    private void EmotionCrazy_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Crazy;
-    }
+            PART_EmotionComboBox.Items.Add(item);
+        }
 
-    private void EmotionSerious_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Serious;
-    }
-
-    private void EmotionEvil_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Evil;
-    }
-
-    private void EmotionHurt_Selected(object sender, System.Windows.RoutedEventArgs e)
-    {
-        _verityWindow.Verity.Emotion.SimpleEmotion = SimpleEmotion.Hurt;
+        PART_EmotionComboBox.SelectedIndex = 0;
     }
 }
