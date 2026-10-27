@@ -25,4 +25,9 @@ public class Verity
     {
         // Perform Verity AI behavior: thinking about where to move, what to feel, etc. This will be run every tick.
     }
+
+    public void Roll()
+    {
+        // Begin roll animation and roll to a new spot.
+    }
 }

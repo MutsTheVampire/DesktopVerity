@@ -17,7 +17,15 @@ public class VerityEmotion
 {
     private Verity _verity;
 
-    public SimpleEmotion SimpleEmotion { get; private set; } = SimpleEmotion.Happy;
+    public SimpleEmotion SimpleEmotion
+    {
+        get;
+        internal set
+        {
+            field = value;
+            EmotionChanged?.Invoke(this, EventArgs.Empty);
+        }
+    } = SimpleEmotion.Happy;
 
     /**
      * Represents the intensity of the emotion on a scale of 0-100.

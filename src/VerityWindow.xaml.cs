@@ -12,9 +12,10 @@ namespace DesktopVerity;
 public partial class VerityWindow
 {
     private Verity3DDebugWindow? _debugWindow;
-    private readonly Verity _verity;
 
-#region Dependency properties
+    public Verity Verity { get; }
+
+    #region Dependency properties
     public Vector3D LightPosition
     {
         get => (Vector3D)GetValue(LightPositionProperty);
@@ -160,12 +161,19 @@ public partial class VerityWindow
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
         }
 
-        _verity = verity;
-        _verity.Emotion.EmotionChanged += OnEmotionChanged;
+        Verity = verity;
+        Verity.Emotion.EmotionChanged += OnEmotionChanged;
+
+        Closing += VerityWindow_Closing;
 
         InitializeComponent();
 
         VerityModel.Geometry = SphereGenerator.CreateSphere(30, 30);
+    }
+
+    private void VerityWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        _debugWindow?.Close();
     }
 
     /**
@@ -173,7 +181,7 @@ public partial class VerityWindow
      */
     private string GetEmotionFaceTexture()
     {
-        return _verity.Emotion.SimpleEmotion switch
+        return Verity.Emotion.SimpleEmotion switch
         {
             SimpleEmotion.Happy   => "/Resources/happy.png",
             SimpleEmotion.Serious => "/Resources/serious_1.png",
@@ -181,6 +189,8 @@ public partial class VerityWindow
             SimpleEmotion.Evil    => "/Resources/evil.png",
             SimpleEmotion.Neutral => "/Resources/neutral.png",
             SimpleEmotion.Hurt    => "/Resources/hurt.png",
+
+            _ => "/Resources/happy.png"
         };
     }
 

@@ -8,7 +8,11 @@
         Title="Verity3DDebugWindow" Height="450" Width="800"
         d:DataContext="{ Binding ElementName=_verityWindow }">
     <Grid>
-        <StackPanel Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -85,6 +89,17 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label VerticalAlignment="Center">Verity emotion</Label>
+            <ComboBox SelectedItem="0">
+                <ComboBoxItem Selected="EmotionHappy_Selected">Happy</ComboBoxItem>
+                <ComboBoxItem Selected="EmotionNeutral_Selected">Neutral</ComboBoxItem>
+                <ComboBoxItem Selected="EmotionCrazy_Selected">Crazy</ComboBoxItem>
+                <ComboBoxItem Selected="EmotionSerious_Selected">Serious</ComboBoxItem>
+                <ComboBoxItem Selected="EmotionEvil_Selected">Evil</ComboBoxItem>
+                <ComboBoxItem Selected="EmotionHurt_Selected">Hurt</ComboBoxItem>
+            </ComboBox>
         </StackPanel>
     </Grid>
 </Window>
